@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          #div-column {
+            float: left;
+            width: 50%;
+        }
+        span{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h2>Fetch Data</h2>
+
+   <h3>Personal Details</h3><hr>
+<div id="div-column">
+    Full Name: <span id="show-name"> </span><br><br>
+    Mobile Number: <span id="show-mob"> </span><br><br>
+    Date Of Birth: <span id="show-dob"> </span>
+</div>
+<div id="div-column">
+    Gender: <span id="show-gender"> </span><br><br>
+    Email: <span id="show-email"> </span><br><br>
+    Occupation: <span id="show-occ"> </span><br><br>
+</div>
+<br><br><br><br>
+<h3>Identity Details</h3> <hr>
+<div id="div-column">
+    ID Type: <span id="show-id"> </span><br><br>
+    ID Number: <span id="show-num"> </span><br><br>
+    Issue Date: <span id="show-idDate"> </span>
+</div>
+<div id="div-column">
+    Issue State: <span id="show-state"> </span><br><br>
+    Issue Authority: <span id="show-auth"> </span><br><br>
+    Expiry Date: <span id="show-exp"> </span>
+</div>
+ 
+<script>
+document.getElementById("show-name").innerText=localStorage.getItem("Name");
+document.getElementById("show-mob").innerText=localStorage.getItem("Mobile");
+document.getElementById("show-dob").innerText=localStorage.getItem("DOB");
+document.getElementById("show-gender").innerText=localStorage.getItem("Gender");
+document.getElementById("show-email").innerText=localStorage.getItem("Email");
+document.getElementById("show-occ").innerText=localStorage.getItem("Occ");
+document.getElementById("show-id").innerText=localStorage.getItem("Type");
+document.getElementById("show-num").innerText=localStorage.getItem("IdNum");
+</script>
+</body>
+</html>

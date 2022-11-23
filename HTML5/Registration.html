@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="regStyle.css">
+</head>
+
+<body>
+    <form method="POST" action="response.html">
+        <div id="outer-div">
+            <div id="inner-div">
+                <h2>Registration Form</h2>
+                <hr>
+
+                <b>
+                    <label id="header-label">Personal Details</label> <br><br>
+                    <div id="div-column">
+                        <label id="txt-label">Full Name *</label><br>
+                        <input type="text" id="name-id" onkeyup="nameValidation()" name="name"
+                            placeholder="Enter Your Name" required /><p id="name-error"></p>
+                        <label id="txt-label">Mobile Number *</label><br>
+                        <input type="number" id="mobile-id" onkeyup="numValidation()" name="mobile"
+                            placeholder="Enter mobile number" required /><p id="mob-error"></p>
+                    </div>
+                    <div id="div-column">
+                        <label id="txt-label">Date Of Birth *</label><br>
+                        <input type="date" id="dob-id" name="dob"
+                            placeholder="Enter birth date" required /> <p id="dob-error"></p>
+                        <label id="txt-label">Gender *</label><br>
+                        <select name="gender" id="gender-id">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                          </select>
+                        <!-- <input type="text" id="gender-id" onkeyup="genderValidation()" name="gender"
+                            placeholder="Enter your gender" required /> -->
+                    </div>
+                    <div id="div-column">
+                        <label id="txt-label">Email *</label> <br>
+                        <input type="text" id="email-id" onkeyup="emailValidation()" name="email"
+                            placeholder="Enter Your Email" required><p id="email-error"></p>
+                        <label id="txt-label">Occupation</label> <br>
+                        <input type="text" id="occ-id" name="occ"
+                            placeholder="Enter Occupation" /><br><br>
+                    </div>
+                    <br><br>
+                    <label id="header-label">Identity Details</label> <br><br>
+                    <div id="div-column">
+                        <label id="txt-label">ID Type *</label><br>
+                        <input type="text" id="id-type" onkeyup="idTypeValidation()" placeholder="Enter ID type"
+                            required /><p id="type-error"></p>
+                        <label id="txt-label">Issue Date</label><br>
+                        <input type="date" id="issue-date"  placeholder="Enter ID issue date">
+                    </div>
+                    <div id="div-column">
+                        <label id="txt-label">ID Number *</label><br>
+                        <input type="number" id="id-num" onkeyup="numValidation()" name="idNum"
+                            placeholder="Enter ID number" required /> <br><br>
+                        <label id="txt-label">Issue State</label><br>
+                        <input type="text" id="issue-state" name="idState"
+                            placeholder="Enter ID issue State">
+                        <br><br>
+
+                    </div>
+                    <div id="div-column">
+                        <label id="txt-label">Issue Authority</label> <br>
+                        <input type="text" id="issue-auth" name="idAuth" placeholder="Enter issue Authority"><br><br>
+                        <label id="txt-label">Expiry Date</label> <br>
+                        <input type="date" id="exp-date" onkeyup="dateValidation()" name="eDate"
+                            placeholder="Enter ID expiry date"><br><br>
+                    </div>
+
+                    <input id="button" type="submit" onclick="sendInput()" value="NEXT &rarr;">
+
+                    <p id="error-para"></p>
+            </div>
+        </div>
+        </div>
+
+        <script>
+
+
+            let paraElement = document.getElementById("error-para");
+
+            function sendInput() {
+                console.log("call func")
+                // if (document.getElementById("name-error").value.length > 0) {
+                //     paraElement.innerText = `Please enter correct details into required fields..!!`;
+                // } else {
+                    localStorage.clear();
+                    localStorage.setItem("Name", document.getElementById("name-id").value);
+                    localStorage.setItem("Mobile", document.getElementById("mobile-id").value);
+                    localStorage.setItem("DOB", document.getElementById("dob-id").value);
+                    localStorage.setItem("Email", document.getElementById("email-id").value);
+                    localStorage.setItem("Gender", document.getElementById("gender-id").value);
+                    localStorage.setItem("Occ", document.getElementById("occ-id").value);
+                    localStorage.setItem("Type", document.getElementById("id-type").value);
+                    localStorage.setItem("IdNum", document.getElementById("id-num").value);
+                // }
+                console.log(localStorage.getItem("Name"));
+            }
+
+            
+            var txtReg = new RegExp("^[A-Za-z]*$");
+            let numReg = new RegExp("^[0-9]*$");
+            let dateReg = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(([1][26]|[2468][048]|[3579][26])00))))$/g;
+            let emailReg = /^\S+@\S+\.\S+$/;
+
+            let nameErrEle = document.getElementById("name-error");
+            let inputTxt = document.getElementById("name-id");
+
+            function nameValidation() {
+                console.log("Doing task");
+                console.log(inputTxt.value);
+                if (!txtReg.test(inputTxt.value)) {
+                    nameErrEle.innerText = `Only Alphabetical value allowed`;
+                } else {
+                    nameErrEle.innerText = ``;
+                }
+            }
+
+            let mobErrEle = document.getElementById("mob-error");
+            let inputNum = document.getElementById("mobile-id");
+
+            function numValidation() {
+                console.log("Doing task");
+                console.log(inputNum.value)
+                if (!numReg.test(inputNum.value)) {
+                    mobErrEle.innerText = `Only Numeric value allowed`;
+                } else {
+                    if (inputNum.value.length > 10) {
+                        mobErrEle.innerText = `Max 10 digit allowed`;
+                    } else {
+                        mobErrEle.innerText = ``;
+                    }
+                }
+            }
+
+            let typeErrEle = document.getElementById("type-error");
+            let idTypeTxt = document.getElementById("id-type");
+
+            function idTypeValidation() {
+                console.log("Doing task");
+                console.log(idTypeTxt.value);
+                if (!txtReg.test(idTypeTxt.value)) {
+                    typeErrEle.innerText = `Only Alphabetical value allowed`;
+                } else {
+                    typeErrEle.innerText = ``;
+                }
+            }
+
+            let mailErrEle = document.getElementById("email-error");
+            let inputEmail = document.getElementById("email-id");
+
+            function emailValidation() {
+                console.log("Doing task");
+                console.log(inputEmail.value)
+                if (!emailReg.test(inputEmail.value) && inputEmail.value.length != 0) {
+                    mailErrEle.innerText = `Invalid Email Address`;
+                } else {
+                    mailErrEle.innerText = ``;
+                }
+            }
+
+
+            let inputDate = document.getElementById("dob-id");
+            function dateValidation() {
+                console.log("Doing task");
+                console.log(inputDate.value)
+                if (!dateReg.test(inputDate.value)) {
+                    paraElement.innerText = `Invalid Date. Date value should be like eg. DD/MM/YYYY`;
+                } else {
+                    paraElement.innerText = ``;
+                }
+            }
+        </script>
+</body>
+
+</html>

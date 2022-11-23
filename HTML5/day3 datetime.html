@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<body onload="startTime()">
+
+<h2>JS Clock</h2>
+
+
+<div id="clock"></div>
+<div id="date"></div>
+
+
+<script>
+    var monthStr=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+
+  document.getElementById('clock').innerHTML = h + ":" + m + ":" + s ;
+  document.getElementById('date').innerHTML =  today.getDate()+ " " + monthStr.at(today.getMonth()) + " " + today.getFullYear();
+  setTimeout(startTime, 1000);
+}
+</script>
+
+</body>
+</html>

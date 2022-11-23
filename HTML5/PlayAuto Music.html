@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player</title>
+    <style>
+        div {
+            border: 4px solid black;
+            border-radius: 10px;
+            margin: 10px auto;
+            width: 300px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <audio id="player" controls>
+            <source type="audio/mpeg" src="C:\\Shankar\\Programs\\HTML5\\mp3\\sample1.mp3">
+            </source>
+        </audio>
+
+        <ul><h3>
+            <li><a href="#">sample1</a></li>
+            <li><a href="#">kesariya</a></li>
+            <li><a href="#">kgf-mother</a></li></h3>
+        </ul>
+    </div>
+
+
+    <script>
+        let songIndex=0;
+        let list = document.getElementsByTagName("li");
+        for (let i = 0; i < list.length; i++) {
+            list[i].addEventListener("click", function () {
+                console.log(list[i]);
+                document.getElementById('player').src = "C:\\Shankar\\Programs\\HTML5\\mp3\\" + list[i].innerText + ".mp3";
+                document.getElementById('player').play();
+                songIndex=i;
+                })
+            }
+
+        document.getElementById('player').addEventListener("ended", function () {
+                    setTimeout(() => {
+                    if(songIndex < list.length-1){
+                            songIndex++;
+                            console.log(list[songIndex]);
+                            document.getElementById('player').src = "C:\\Shankar\\Programs\\HTML5\\mp3\\" + list[songIndex].innerText + ".mp3";
+                    }else{
+                        songIndex=0;
+                        document.getElementById('player').src = "C:\\Shankar\\Programs\\HTML5\\mp3\\" + list[songIndex].innerText + ".mp3";  
+                    }
+                    document.getElementById('player').play();
+                }, 2000);
+            });
+    </script>
+</body>
+</html>

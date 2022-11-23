@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>Music Demo</h2>
+
+    <input type="text" id="txtSong" placeholder="Enter song to add">
+    <button onClick="addSong()"> Add Song</button>
+
+    <h3>Songs List</h3>
+    <div id="songsList"></div>
+<br>
+    <button onClick="sortSong()"> Sort Songs</button>
+    <button onClick="sortReverse()"> Sort Songs in Reverse</button>
+
+    <script>
+
+        var songArr = [];
+
+        function addSong() {
+            let song = document.getElementById("txtSong").value;
+            songArr.push(song);
+
+            var liTagList = "";
+            for (let i = 0; i < songArr.length; i++) {
+                liTagList += `<li> ${songArr[i]} </li>`;
+            }
+            document.getElementById("songsList").innerHTML = liTagList;
+        }
+
+        function sortSong() {
+            songArr.sort();
+
+            var liTagList = "";
+
+            for (let i = 0; i < songArr.length; i++) {
+                liTagList += `<li> ${songArr[i]} </li>`;
+            }
+            document.getElementById("songsList").innerHTML = liTagList;
+
+        }
+
+        function sortReverse() {
+            songArr.reverse();
+            var liTagList = "";
+            for (let i = 0; i < songArr.length; i++) {
+                liTagList += `<li> ${songArr[i]} </li>`;
+            }
+            document.getElementById("songsList").innerHTML = liTagList;
+        }
+    </script>
+
+</body>
+
+</html>
